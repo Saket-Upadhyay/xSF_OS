@@ -1,5 +1,5 @@
 # xSF_OS
-Simple 64bit OS Kernel from scratch
+> xSFOS: (X Six Four Operating System) is a simple 64bit OS Kernel from scratch.
 
 ### Progress
 
