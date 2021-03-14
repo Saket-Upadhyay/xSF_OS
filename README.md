@@ -3,7 +3,7 @@ Simple 64bit OS Kernel from scratch
 
 ### Progress
 
-- [x] Base Code, Boot loader, simple assembly prints "SU" at boot 
+- [x] Base Code, Boot loader, simple assembly prints "SU" at boot (14/03/2021)
 
 
 
