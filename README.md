@@ -5,7 +5,15 @@
 - [x] Base Code, Boot loader, simple assembly prints "SU" at boot (14/03/2021)
 - [x] Enable longmode (64bit), setup Paging and Stack, prints "SAKET." at boot (16/03/2021)
 
+### Toolchain
 
+You can use docker to get whole toolchain already set-up as docer image.
+
+Get the image from Docker Hub by -
+```docker pull x64mayhem/xsfos-dev:latest```
+
+
+> This project is not yet complete, full documentation will be available after completion so that I can explain everything and share notes.
 ### Screenshots 
 
 ###### Base Code, Boot loader, simple assembly prints "SU" at boot 
