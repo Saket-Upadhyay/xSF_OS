@@ -26,22 +26,22 @@ extern longmode_start
 section .text
 bits 32
 start:
-	mov esp,stack_top
+	MOV esp,stack_top
 
-	call check_multiboot
-	call check_cpuid
-	call check_longmode
+	CALL check_multiboot
+	CALL check_cpuid
+	CALL check_longmode
 
-	call setup_pagetable
-	call enable_paging
+	CALL setup_pagetable
+	CALL enable_paging
 
 	lgdt [gdt64.pointer]
 
-	jmp gdt64.code_segment:longmode_start
+	JMP gdt64.code_segment:longmode_start
 
 	; print 'SU'
-	; mov dword [0xb8000], 0x2f552f53
-	; moved to main64.asm
+	; MOV dword [0xb8000], 0x2f552f53
+	; MOVed to main64.asm
 	hlt
 
 
@@ -52,14 +52,14 @@ jne .no_multiboot
 ret
 .no_multiboot:
 
-mov al,"M"
-jmp error
+MOV al,"M"
+JMP error
 
 
 check_cpuid:
 	pushfd
 	pop eax
-	mov ecx,eax
+	MOV ecx,eax
 	xor eax, 1<<21
 	push eax
 	popfd
@@ -72,43 +72,44 @@ check_cpuid:
 	ret
 
 .no_cpuid:
-mov al, "C"
-jmp error
+MOV al, "C"
+JMP error
 
 
 check_longmode:
-	mov eax,0x80000000
+	MOV eax,0x80000000
 	cpuid
 	cmp eax,0x80000001
 	jb .no_long_mode
 
-	mov eax,0x80000001
+	MOV eax,0x80000001
 	cpuid
 	test edx, 1<<29
 	jz .no_long_mode
 	ret
+	
 .no_long_mode:
-	mov al,"L"
-	jmp error
+	MOV al,"L"
+	JMP error
 
 
 setup_pagetable:
 
 	;Stitching different levels of page tables
-	mov eax, page_table_L3
-	or eax, 0b11 ; present, writable
-	mov [page_table_L4],eax
+	MOV eax, page_table_L3
+	OR eax, 0b11 ; present, writable
+	MOV [page_table_L4],eax
 
-	mov eax, page_table_L2
-	or eax, 0b11 ; present, writable
-	mov [page_table_L3],eax
+	MOV eax, page_table_L2
+	OR eax, 0b11 ; present, writable
+	MOV [page_table_L3],eax
 
-	mov ecx,0 ; loop counter
+	MOV ecx,0 ; loop counter
 .loop:
-	mov eax,0x200000
+	MOV eax,0x200000
 	mul ecx
-	or eax,0b10000011 ; present, writable, huge page
-	mov [page_table_L2 + ecx * 8],eax
+	OR eax,0b10000011 ; present, writable, huge page
+	MOV [page_table_L2 + ecx * 8],eax
 	inc ecx
 	cmp ecx,512 ; check if the table is mapped
 	jne .loop
@@ -117,36 +118,36 @@ setup_pagetable:
 
 enable_paging:
 	; pass the page table location to CPU
-	mov eax,page_table_L4
-	mov cr3,eax
+	MOV eax,page_table_L4
+	MOV cr3,eax
 
 	;enable PAE
-	mov eax,cr4
-	or eax,1<<5
-	mov cr4, eax
+	MOV eax,cr4
+	OR eax,1<<5
+	MOV cr4, eax
 
 	;enable longmode
 
-	mov ecx, 0xC0000080
+	MOV ecx, 0xC0000080
 	rdmsr ; read model specific register
-	or eax, 1<<8
+	OR eax, 1<<8
 	wrmsr
 
 	;enable paging
-	mov eax,cr0
-	or eax,1<<31
-	mov cr0, eax
+	MOV eax,cr0
+	OR eax,1<<31
+	MOV cr0, eax
 
 	ret
 
 
 error:
 
-mov dword [0xb8000], 0x4f524f45
-mov dword [0xb8004], 0x4f3a4f52
-mov dword [0xb8008], 0x4f204f20
-; doing mov dword below will give operand size error as AL is lower register and do not operate on dword
-mov byte [0xb800a], al
+MOV dword [0xb8000], 0x4f524f45
+MOV dword [0xb8004], 0x4f3a4f52
+MOV dword [0xb8008], 0x4f204f20
+; doing MOV dword below will give operand size error as AL is lower register and do not operate on dword
+MOV byte [0xb800a], al
 hlt
 
 

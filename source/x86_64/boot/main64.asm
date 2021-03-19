@@ -21,22 +21,25 @@
 ; SOFTWARE.
 
 global longmode_start
+extern main_kernel
+
 section .text
 
 bits 64
 
 longmode_start:
 ;zero out registers data segments
-    xor ax,ax
-    mov ss,ax
-    mov ds,ax
-    mov es,ax
-    mov fs,ax
-    mov gs,ax
+    XOR AX,AX
+    MOV ss,AX
+    MOV ds,AX
+    MOV es,AX
+    MOV fs,AX
+    MOV gs,AX
 
 	; print 'SAKET'
-	mov dword [0xb8000], 0x2f412f53  
-    mov dword [0xb8004], 0x2f452f4b 
-    mov dword [0xb8008], 0x2f2e2f54
-
+;	MOV dword [0xb8000], 0x2f412f53  
+;   MOV dword [0xb8004], 0x2f452f4b 
+;    MOV dword [0xb8008], 0x2f2e2f54
+    
+    call main_kernel ; This is defined in main.c under kernel directory.
     hlt
