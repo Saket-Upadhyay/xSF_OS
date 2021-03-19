@@ -23,16 +23,17 @@ Then, open a terminal in root directory of project and run
 
 - ```docker run --rm -it -v "${pwd}:/root/env" x64mayhem/xsfos-dev```
 
-> This project is not yet complete, full documentation will be available after completion so that I can explain everything and share notes.
+> This project is is a work in progress, full documentation will be available after completion, so that I can explain everything better and share my notes.
+
 ### Screenshots 
 
-###### Base Code, Boot loader, simple assembly prints "SU" at boot 
+###### 1. Base Code, Boot loader, simple assembly prints "SU" at boot 
 ![](https://github.com/Saket-Upadhyay/xSF_OS/blob/main/screenshots/Step1/Step1.png)
 
-###### Enable longmode (64bit), setup Paging and Stack, prints "SAKET." at boot
+###### 2. Enable longmode (64bit), setup Paging and Stack, prints "SAKET." at boot
 ![](https://github.com/Saket-Upadhyay/xSF_OS/blob/main/screenshots/Step2/step2.png)
 
-###### Call subroutine from C code, Print String, Control Foreground and Background color.
+###### 3. Call subroutine from C code, Print String, Control Foreground and Background color.
 ![](https://github.com/Saket-Upadhyay/xSF_OS/blob/main/screenshots/Step3/Step3.png)
 
 ---
