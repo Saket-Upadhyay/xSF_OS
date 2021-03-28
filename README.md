@@ -1,7 +1,7 @@
 # xSF_OS
 ![](https://github.com/Saket-Upadhyay/xSF_OS/blob/main/screenshots/Step1/xSFOSpen.png)
 
-[[हिन्दी में पढ़ें](https://github.com/Saket-Upadhyay/xSF_OS/blob/main/Readme_HI.md)]
+[[हिन्दी में पढ़ें (Read in Hindi)](https://github.com/Saket-Upadhyay/xSF_OS/blob/main/Readme_HI.md)]
 ### Progress
 
 - [x] Base Code, Boot loader, simple assembly prints "SU" at boot (14/03/2021)
