@@ -1,6 +1,8 @@
 # xSF_OS
 ![](https://github.com/Saket-Upadhyay/xSF_OS/blob/main/screenshots/Step1/xSFOSpen.png)
 
+यह एक सरल ६४ बिट लिनक्स कर्नेल है, जो की एकदम शुरुआत से बनाया जा रहा है। 
+
 ### विकास की स्थिति-
 
 - [x] Base Code, बूट लोडर, सरल असेंबली बूट पर "SU" छापती है।  (१४/०३/२०२१)
